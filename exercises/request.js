@@ -25,7 +25,13 @@ function getStudents(callback) {
             var pathToHouseFile = __dirname + '/../house.txt';
             
             // CODE HERE
-            // fs.readFile(pathToHouseFile, 'utf8'
+            fs.readFile(pathToHouseFile, 'utf8', (err, house) => {
+                var students = [];
+                parsedData.forEach(student => {
+                    if (student.house === house) { students.push(student.name); }
+                });
+                callback(students);
+            });
         });
     });
 }
